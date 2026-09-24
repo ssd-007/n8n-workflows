@@ -2,7 +2,8 @@
 
 Reads new Jira Service Management tickets, finds the relevant articles in the Confluence knowledge base, and posts an AI-written internal note with suggested troubleshooting steps for the service desk team.
 
-<!-- SCREENSHOT 1: the full workflow in the n8n editor -->
+<img width="1845" height="668" alt="image" src="https://github.com/user-attachments/assets/b2f0912b-66e2-4fa2-b3f2-887cf2b7f04a" />
+
 
 ---
 
@@ -12,7 +13,7 @@ Every 5 minutes, this workflow checks Jira Service Management for open tickets i
 
 The AI only advises. It never changes the ticket's priority, status or assignee, never replies to the customer, and never performs any IT action. A person on the service desk always decides what happens next.
 
-<!-- SCREENSHOT 2: the internal note on a Jira ticket -->
+<img width="1229" height="412" alt="image" src="https://github.com/user-attachments/assets/7f5cb847-1a74-49fb-b056-216f1abf7dd2" />
 
 ---
 
