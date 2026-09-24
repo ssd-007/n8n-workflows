@@ -49,7 +49,7 @@ Schedule Trigger (every 5 minutes)
 - **Search KB**: HTTP Request to the Confluence search API; builds a CQL query from the keywords (`text ~ "vpn" OR text ~ "network"`) and returns at most 3 articles with their content
 - **Analyze JIRA Ticket**: Basic LLM Chain with Claude Sonnet 5 and a Structured Output Parser; returns `kb_articles_used`, `troubleshooting_steps` and a `confidence` score. It uses only the articles that match the ticket and only steps from those articles, never general knowledge
 - **Build Comment**: Edit Fields node that turns the AI output into a note in Jira formatting (bold headings, numbered steps)
-- **Post Internal Comment**: HTTP Request to the Jira Service Management API with `public: false`, so the note is visible to agents only. The standard Jira node can only add public comments, which JSM emails to the customer
+- **Post Internal Comment**: HTTP Request to the Jira Service Management API with `public: false`, so the note is visible to helpdesk only. The standard Jira node can only add public comments, which JSM emails to the customer
 - **Label Marked**: HTTP Request that adds the `ai-triaged` label without removing existing labels; this is how the workflow remembers which tickets are done
 - **Send a message**: Gmail node that emails the service desk with the ticket, the article used, the suggested steps and a link to the ticket
 
@@ -73,13 +73,11 @@ The same Atlassian API token works for Jira and Confluence.
 
 - **Search instead of sending the whole knowledge base.** Sending every article with every ticket gets expensive as the knowledge base grows. A small, cheap model first picks keywords, and only the top 3 matching articles go to the main model.
 - **Knowledge base only.** Suggested steps come from the company's own articles, not from the model's general knowledge, so advice follows internal procedures.
-- **Internal notes, human in control.** The note is written for the service desk team and is never visible to the customer. Priority, category and the reply to the customer stay with the agent.
+- **Internal notes, human in control.** The note is written for the service desk team and is never visible to the customer. Priority, category and the reply to the customer stay with helpdesk.
 - **Idempotent.** The `ai-triaged` label makes sure each ticket is processed exactly once, even though the workflow runs every 5 minutes.
 
 ---
 
 ## Why This Was Built
 
-First-line IT support spends much of its time reading tickets, looking up the matching knowledge base article, and working out what to ask the user next. This workflow does that groundwork as soon as a ticket arrives: by the time an agent opens it, the ticket already has the relevant article and a clear list of troubleshooting steps. The agent keeps full control and simply starts from a better position.
-
-This is a portfolio project. The company, "Northwind Demo Corp", and its knowledge base articles are fictional.
+First-line IT support spends much of its time reading tickets, looking up the matching knowledge base article, and working out what to ask the user next. This workflow does that groundwork as soon as a ticket arrives: by the time an agent opens it, the ticket already has the relevant article and a clear list of troubleshooting steps. The service desk team keeps full control and simply starts from a better position.
