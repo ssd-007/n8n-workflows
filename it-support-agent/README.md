@@ -53,6 +53,9 @@ Schedule Trigger (every 5 minutes)
 - **Label Marked**: HTTP Request that adds the `ai-triaged` label without removing existing labels; this is how the workflow remembers which tickets are done
 - **Send a message**: Gmail node that emails the service desk with the ticket, the article used, the suggested steps and a link to the ticket
 
+  <img width="1248" height="625" alt="image" src="https://github.com/user-attachments/assets/8e67bcf4-67b9-432c-a322-043388060431" />
+
+
 ---
 
 ## Credentials
