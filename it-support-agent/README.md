@@ -1,4 +1,4 @@
-# AI IT Ticket Triage
+# IT Support Agent
 
 Reads new Jira Service Management tickets, finds the relevant articles in the Confluence knowledge base, and posts an AI-written internal note with suggested troubleshooting steps for the service desk team.
 
