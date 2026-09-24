@@ -2,11 +2,11 @@
   "id": "qvlJ0C4tpsOlCxNy",
   "name": "IT Support Agent",
   "active": true,
-  "activeVersionId": "d85f860e-4360-42fd-aa99-f890f3878e59",
+  "activeVersionId": "80df1878-7b5b-4ecb-89ca-950d11a9f3aa",
   "createdAt": "2026-09-23T15:22:36.506Z",
-  "updatedAt": "2026-09-23T23:57:16.750Z",
+  "updatedAt": "2026-09-24T16:00:11.562Z",
   "isArchived": false,
-  "versionId": "d85f860e-4360-42fd-aa99-f890f3878e59",
+  "versionId": "80df1878-7b5b-4ecb-89ca-950d11a9f3aa",
   "triggerCount": 1,
   "nodes": [
     {
@@ -24,8 +24,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        1032,
-        216
+        1040,
+        224
       ],
       "credentials": {
         "anthropicApi": {
@@ -44,8 +44,8 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        1160,
-        216
+        1168,
+        224
       ]
     },
     {
@@ -63,8 +63,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        1240,
-        424
+        1248,
+        432
       ],
       "credentials": {
         "anthropicApi": {
@@ -133,8 +133,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.6,
       "position": [
-        520,
-        216
+        528,
+        224
       ],
       "credentials": {
         "anthropicApi": {
@@ -326,6 +326,101 @@
       ],
       "id": "070242db-67da-4dbd-b7e4-ba14acd3739b",
       "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "content": "## ⏰ Trigger\n\nRuns every 5 minutes. Only tickets that haven't been handled yet are picked up, so quiet runs cost nothing.",
+        "height": 384,
+        "width": 208,
+        "color": "#17850F"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -224
+      ],
+      "id": "cf159730-2dd8-4c7d-a9a4-3e3d4d0a8602",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## 📥 Get New Tickets\n\nFetch open JSM tickets without the ai-triaged label. Each ticket becomes one item, and every step after this runs once per ticket.",
+        "height": 384,
+        "width": 256
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -224
+      ],
+      "id": "95e73ea8-0e3f-4891-95b2-2e1124850500",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## 🔎 Search Knowledge Base\n\nClaude Haiku turns the ticket into 1–3 search keywords, then Confluence is searched for the top 3 matching articles. Only relevant articles are passed on, not the whole knowledge base.",
+        "height": 608,
+        "width": 560,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -224
+      ],
+      "id": "52a7ee47-6305-44a9-81f5-29769bfbda43",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## 🧠 AI Analysis\n\nClaude Sonnet reads the ticket and the articles found, and returns the articles used, troubleshooting steps (from the knowledge base only) and a confidence score. Auto-fix retries if the format is wrong.",
+        "height": 800,
+        "width": 448,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        992,
+        -224
+      ],
+      "id": "830720dd-9777-4de5-9984-7798a3adb599",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "## 📝 Write Back to Jira\n\nFormat the note, post it as an internal comment (agents only, never emailed to the customer), then add the ai-triaged label so the ticket is never processed twice.",
+        "height": 400,
+        "width": 656,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1456,
+        -224
+      ],
+      "id": "afff18ce-43e3-41f6-a902-a4b140d50b14",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## 📧 Notify Service Desk\n\nEmail the service desk with the ticket, the knowledge base article used, the suggested steps and a link to the ticket.",
+        "height": 400,
+        "width": 288,
+        "color": "#075F4D"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2128,
+        -224
+      ],
+      "id": "75262411-2ecd-4ef1-a59e-8019b399ca08",
+      "name": "Sticky Note5"
     }
   ],
   "connections": {
@@ -493,7 +588,7 @@
     }
   ],
   "activeVersion": {
-    "versionId": "d85f860e-4360-42fd-aa99-f890f3878e59",
+    "versionId": "80df1878-7b5b-4ecb-89ca-950d11a9f3aa",
     "workflowId": "qvlJ0C4tpsOlCxNy",
     "nodes": [
       {
@@ -511,8 +606,8 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
         "typeVersion": 1.3,
         "position": [
-          1032,
-          216
+          1040,
+          224
         ],
         "credentials": {
           "anthropicApi": {
@@ -531,8 +626,8 @@
         "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
         "typeVersion": 1.3,
         "position": [
-          1160,
-          216
+          1168,
+          224
         ]
       },
       {
@@ -550,8 +645,8 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
         "typeVersion": 1.3,
         "position": [
-          1240,
-          424
+          1248,
+          432
         ],
         "credentials": {
           "anthropicApi": {
@@ -620,8 +715,8 @@
         "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
         "typeVersion": 1.6,
         "position": [
-          520,
-          216
+          528,
+          224
         ],
         "credentials": {
           "anthropicApi": {
@@ -813,6 +908,101 @@
         ],
         "id": "070242db-67da-4dbd-b7e4-ba14acd3739b",
         "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "content": "## ⏰ Trigger\n\nRuns every 5 minutes. Only tickets that haven't been handled yet are picked up, so quiet runs cost nothing.",
+          "height": 384,
+          "width": 208,
+          "color": "#17850F"
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          -80,
+          -224
+        ],
+        "id": "cf159730-2dd8-4c7d-a9a4-3e3d4d0a8602",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {
+          "content": "## 📥 Get New Tickets\n\nFetch open JSM tickets without the ai-triaged label. Each ticket becomes one item, and every step after this runs once per ticket.",
+          "height": 384,
+          "width": 256
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          144,
+          -224
+        ],
+        "id": "95e73ea8-0e3f-4891-95b2-2e1124850500",
+        "name": "Sticky Note1"
+      },
+      {
+        "parameters": {
+          "content": "## 🔎 Search Knowledge Base\n\nClaude Haiku turns the ticket into 1–3 search keywords, then Confluence is searched for the top 3 matching articles. Only relevant articles are passed on, not the whole knowledge base.",
+          "height": 608,
+          "width": 560,
+          "color": 6
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          416,
+          -224
+        ],
+        "id": "52a7ee47-6305-44a9-81f5-29769bfbda43",
+        "name": "Sticky Note2"
+      },
+      {
+        "parameters": {
+          "content": "## 🧠 AI Analysis\n\nClaude Sonnet reads the ticket and the articles found, and returns the articles used, troubleshooting steps (from the knowledge base only) and a confidence score. Auto-fix retries if the format is wrong.",
+          "height": 800,
+          "width": 448,
+          "color": 3
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          992,
+          -224
+        ],
+        "id": "830720dd-9777-4de5-9984-7798a3adb599",
+        "name": "Sticky Note3"
+      },
+      {
+        "parameters": {
+          "content": "## 📝 Write Back to Jira\n\nFormat the note, post it as an internal comment (agents only, never emailed to the customer), then add the ai-triaged label so the ticket is never processed twice.",
+          "height": 400,
+          "width": 656,
+          "color": 4
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          1456,
+          -224
+        ],
+        "id": "afff18ce-43e3-41f6-a902-a4b140d50b14",
+        "name": "Sticky Note4"
+      },
+      {
+        "parameters": {
+          "content": "## 📧 Notify Service Desk\n\nEmail the service desk with the ticket, the knowledge base article used, the suggested steps and a link to the ticket.",
+          "height": 400,
+          "width": 288,
+          "color": "#075F4D"
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "typeVersion": 1,
+        "position": [
+          2128,
+          -224
+        ],
+        "id": "75262411-2ecd-4ef1-a59e-8019b399ca08",
+        "name": "Sticky Note5"
       }
     ],
     "connections": {
@@ -951,10 +1141,10 @@
     },
     "nodeGroups": [],
     "authors": "Sidrit Demiraj",
-    "name": "Version d85f860e",
+    "name": "Version 80df1878",
     "description": "",
-    "autosaved": false,
-    "createdAt": "2026-09-23T23:23:29.794Z",
-    "updatedAt": "2026-09-24T15:35:52.000Z"
+    "autosaved": true,
+    "createdAt": "2026-09-24T16:00:11.562Z",
+    "updatedAt": "2026-09-24T16:01:08.000Z"
   }
 }
